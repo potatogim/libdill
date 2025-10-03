@@ -3430,11 +3430,11 @@ size_t dns_txt_print(void *dst_, size_t lim, struct dns_txt *txt) {
 static const struct {
 	enum dns_type type;
 	const char *name;
-	int (*parse)();
-	int (*push)();
-	int (*cmp)();
-	size_t (*print)();
-	size_t (*cname)();
+	int (*parse)(void *, struct dns_rr *, struct dns_packet *);
+	int (*push)(struct dns_packet *, void *);
+	int (*cmp)(void *, void *);
+	size_t (*print)(void *, size_t, void *);
+	size_t (*cname)(void *, size_t, void *);
 } dns_rrtypes[]	= {
 	{ DNS_T_A,      "A",      &dns_a_parse,      &dns_a_push,      &dns_a_cmp,      &dns_a_print,      0                },
 	{ DNS_T_AAAA,   "AAAA",   &dns_aaaa_parse,   &dns_aaaa_push,   &dns_aaaa_cmp,   &dns_aaaa_print,   0                },

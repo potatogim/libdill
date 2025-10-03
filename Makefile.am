@@ -102,7 +102,10 @@ libdill_la_CFLAGS = \
     @PTHREAD_CFLAGS@ \
     -fvisibility=hidden\
     -DDILL_EXPORTS \
-    -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0
+    -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 \
+    -Wno-incompatible-pointer-types
+    # -Wno-compare-distinct-pointer-types
+    # -Wno-discarded-qualifiers
 
 ################################################################################
 #  automated tests                                                             #

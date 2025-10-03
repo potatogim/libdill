@@ -507,7 +507,7 @@ struct dns_rr_i {
 
 	int follow;
 
-	int (*sort)();
+	int (*sort)(void *, struct dns_rr *, struct dns_rr_i *, struct dns_packet *);
 	unsigned args[2];
 
 	struct {
@@ -833,7 +833,7 @@ int dns_hosts_loadpath(struct dns_hosts *, const char *);
 
 int dns_hosts_dump(struct dns_hosts *, FILE *);
 
-int dns_hosts_insert(struct dns_hosts *, int, const void *, const void *, _Bool);
+int dns_hosts_insert(struct dns_hosts *, int, const void *, const void *, bool);
 
 struct dns_packet *dns_hosts_query(struct dns_hosts *, struct dns_packet *, int *);
 
@@ -852,7 +852,7 @@ struct dns_resolv_conf {
 	char lookup[4 * (1 + (4 * 2))];
 
 	struct {
-		_Bool edns0;
+		bool edns0;
 
 		unsigned ndots;
 
@@ -860,11 +860,11 @@ struct dns_resolv_conf {
 
 		unsigned attempts;
 
-		_Bool rotate;
+		bool rotate;
 
-		_Bool recurse;
+		bool recurse;
 
-		_Bool smart;
+		bool smart;
 
 		enum {
 			DNS_RESCONF_TCP_ENABLE,
